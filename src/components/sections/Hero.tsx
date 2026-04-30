@@ -1,18 +1,30 @@
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Star } from "lucide-react";
-import { images } from "@/data/site";
 import { useSiteContent, resolveImage } from "@/hooks/useSiteContent";
-import homeHeroLogo from "@/assets/home-hero-logo-transparent.png";
+import { ResponsiveImage } from "@/components/media/ResponsiveImage";
+import { homepage, shared } from "@/assets/registry";
 
 export const Hero = () => {
   const { get } = useSiteContent();
   const g = (k: string, fb: string) => get("home", "hero", k, fb);
-  const heroImage = resolveImage(g("image", ""), images.hero);
+  // Admin-overridden hero image (CMS / uploaded). When absent we fall through to the
+  // bundled <ResponsiveImage> which serves AVIF/WebP with srcset.
+  const heroOverride = resolveImage(g("image", ""), "");
   return (
   <section className="relative flex min-h-screen items-center overflow-hidden">
     <div className="absolute inset-0">
-      <img src={heroImage} alt="Luxury Nairobi apartment with city view" className="w-full h-full object-cover animate-ken-burns" />
+      {heroOverride ? (
+        <img src={heroOverride} alt="Luxury Nairobi apartment with city view" className="w-full h-full object-cover animate-ken-burns" loading="eager" />
+      ) : (
+        <ResponsiveImage
+          asset={homepage.hero}
+          loading="eager"
+          fetchPriority="high"
+          sizes="100vw"
+          className="w-full h-full object-cover animate-ken-burns"
+        />
+      )}
       <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/40 to-transparent" />
     </div>
 
@@ -21,11 +33,12 @@ export const Hero = () => {
       <div className="mx-auto flex max-w-3xl flex-col items-center space-y-5 text-center sm:space-y-7">
         {/* Animated logo centerpiece — fixed size, gentle ambient float (no zoom/scale) */}
         <div className="hero-logo-wrap animate-hero-logo-in -mb-3 w-full flex justify-center">
-          <img
-            src={homeHeroLogo}
-            alt="Savannah Safaris"
-            className="hero-logo-float h-52 w-auto max-w-full object-contain select-none drop-shadow-[0_14px_36px_rgba(0,0,0,0.6)] sm:h-64 md:h-80 lg:h-[24rem]"
+          <ResponsiveImage
+            asset={shared.heroLogo}
+            loading="eager"
+            fetchPriority="high"
             draggable={false}
+            className="hero-logo-float h-52 w-auto max-w-full object-contain select-none drop-shadow-[0_14px_36px_rgba(0,0,0,0.6)] sm:h-64 md:h-80 lg:h-[24rem]"
           />
         </div>
 
