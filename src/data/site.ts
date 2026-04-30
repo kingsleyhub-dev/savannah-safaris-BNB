@@ -1,25 +1,41 @@
-import hero from "@/assets/hero.jpg";
-import bedroom from "@/assets/bedroom.jpg";
-import bedroomAlt1 from "@/assets/bedroom-alt1.jpg";
-import bedroomAlt2 from "@/assets/bedroom-alt2.jpg";
-import bedroom2 from "@/assets/bedroom2.jpg";
-import bedroom2Alt1 from "@/assets/bedroom2-alt1.jpg";
-import bedroom2Alt2 from "@/assets/bedroom2-alt2.jpg";
-import living from "@/assets/living.jpg";
-import living2 from "@/assets/living2.jpg";
-import kitchen from "@/assets/kitchen.jpg";
-import kitchen2 from "@/assets/kitchen2.jpg";
-import kitchen3 from "@/assets/kitchen3.jpg";
-import dining from "@/assets/dining.jpg";
-import dining2 from "@/assets/dining2.jpg";
-import dining3 from "@/assets/dining3.jpg";
-import bathroom from "@/assets/bathroom.jpg";
-import bathroomAlt1 from "@/assets/bathroom-alt1.jpg";
-import bathroomAlt2 from "@/assets/bathroom-alt2.jpg";
-import view from "@/assets/view.jpg";
-import nissan from "@/assets/nissan.jpg";
+/**
+ * Bundled image registry.
+ *
+ * Paths reference files under /public/assets/<page>/images/<file>.jpg
+ * (the original-format fallback). Components that want modern formats +
+ * srcset should use <ResponsiveImage asset={gallery.bedroom1} /> from
+ * `@/assets/registry` instead — these strings exist for back-compat with
+ * legacy code and seed data that stores raw URLs.
+ */
+const homepage = {
+  hero: "/assets/homepage/images/hero.jpg",
+};
 
-export const images = { hero, bedroom, bedroomAlt1, bedroomAlt2, bedroom2, bedroom2Alt1, bedroom2Alt2, living, living2, kitchen, kitchen2, kitchen3, dining, dining2, dining3, bathroom, bathroomAlt1, bathroomAlt2, view, nissan };
+const galleryDir = "/assets/gallery/images";
+const sharedDir = "/assets/shared";
+
+export const images = {
+  hero: homepage.hero,
+  bedroom: `${galleryDir}/bedrooms/bedroom-1.jpg`,
+  bedroomAlt1: `${galleryDir}/bedrooms/bedroom-1-alt1.jpg`,
+  bedroomAlt2: `${galleryDir}/bedrooms/bedroom-1-alt2.jpg`,
+  bedroom2: `${galleryDir}/bedrooms/bedroom-2.jpg`,
+  bedroom2Alt1: `${galleryDir}/bedrooms/bedroom-2-alt1.jpg`,
+  bedroom2Alt2: `${galleryDir}/bedrooms/bedroom-2-alt2.jpg`,
+  living: `${galleryDir}/living/living-1.jpg`,
+  living2: `${galleryDir}/living/living-2.jpg`,
+  kitchen: `${galleryDir}/kitchen/kitchen-1.jpg`,
+  kitchen2: `${galleryDir}/kitchen/kitchen-2.jpg`,
+  kitchen3: `${galleryDir}/kitchen/kitchen-3.jpg`,
+  dining: `${galleryDir}/dining/dining-1.jpg`,
+  dining2: `${galleryDir}/dining/dining-2.jpg`,
+  dining3: `${galleryDir}/dining/dining-3.jpg`,
+  bathroom: `${galleryDir}/bathrooms/bathroom-1.jpg`,
+  bathroomAlt1: `${galleryDir}/bathrooms/bathroom-1-alt1.jpg`,
+  bathroomAlt2: `${galleryDir}/bathrooms/bathroom-1-alt2.jpg`,
+  view: `${galleryDir}/views/city-view.jpg`,
+  nissan: `${sharedDir}/vehicles/nissan.jpg`,
+};
 
 export const property = {
   name: "Savannah Safaris Airbnb",
@@ -57,30 +73,10 @@ export const highlights = [
 ];
 
 export const testimonials = [
-  {
-    name: "Amelia R.",
-    location: "London, UK",
-    quote: "The most thoughtful stay we've had in Nairobi. Spotless, secure, and the views at sunset are unreal.",
-    rating: 5,
-  },
-  {
-    name: "Daniel M.",
-    location: "Cape Town, SA",
-    quote: "Booked Joel's Nissan for a city tour — felt like a proper concierge service. Will return.",
-    rating: 5,
-  },
-  {
-    name: "Priya S.",
-    location: "Mumbai, IN",
-    quote: "Elegant, spacious, and the host communication was flawless. The location is unbeatable.",
-    rating: 5,
-  },
-  {
-    name: "Marcus K.",
-    location: "Berlin, DE",
-    quote: "A genuinely luxurious experience. Beats any hotel we've stayed at in the city.",
-    rating: 5,
-  },
+  { name: "Amelia R.", location: "London, UK", quote: "The most thoughtful stay we've had in Nairobi. Spotless, secure, and the views at sunset are unreal.", rating: 5 },
+  { name: "Daniel M.", location: "Cape Town, SA", quote: "Booked Joel's Nissan for a city tour — felt like a proper concierge service. Will return.", rating: 5 },
+  { name: "Priya S.", location: "Mumbai, IN", quote: "Elegant, spacious, and the host communication was flawless. The location is unbeatable.", rating: 5 },
+  { name: "Marcus K.", location: "Berlin, DE", quote: "A genuinely luxurious experience. Beats any hotel we've stayed at in the city.", rating: 5 },
 ];
 
 export const faqs = [

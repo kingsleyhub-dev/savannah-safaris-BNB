@@ -5,6 +5,8 @@ import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { useSiteContent, resolveImage } from "@/hooks/useSiteContent";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { supabase } from "@/integrations/supabase/client";
+import { LazyVideo } from "@/components/media/LazyVideo";
+import { videos } from "@/assets/registry";
 
 type Item = { src: string; cat: string; alt: string };
 type MediaAsset = { id: string; public_url: string; kind: "image" | "video"; filename: string; alt_text: string | null; gallery_category: string | null };
@@ -107,7 +109,15 @@ const Gallery = () => {
               ) : (
                 <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
                   {publishedVideos.map((video) => (
-                    <video key={video.id} src={video.public_url} controls preload="metadata" className="aspect-video w-full rounded-2xl bg-secondary object-cover" />
+                    <div key={video.id} className="aspect-video">
+                      <LazyVideo
+                        src={video.public_url}
+                        poster={videos.galleryIntro.posterBase ? { base: videos.galleryIntro.posterBase, alt: video.alt_text ?? videos.galleryIntro.posterAlt } : "/assets/gallery/videos/intro-poster.jpg"}
+                        ariaLabel={`Play ${video.filename}`}
+                        className="aspect-video"
+                        videoClassName="rounded-2xl"
+                      />
+                    </div>
                   ))}
                 </div>
               )}
